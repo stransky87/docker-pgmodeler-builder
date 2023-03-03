@@ -1,5 +1,6 @@
 FROM handcraftedbits/pgmodeler-builder-postgres:latest
-MAINTAINER HandcraftedBits <opensource@handcraftedbits.com>
+LABEL com.handcraftedbits.image.authors="opensource@handcraftedbits.com"
+LABEL net.baotran.image.authors="contact@baotran.net"
 
 COPY data /
 
