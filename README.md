@@ -14,4 +14,4 @@ Simply modify the contents of docker-compose.yml to suit your build needs (build
 Once it is done, copy the contents of the output directory to the destination folder of your choice and simply run the `pgmodeler.exe` executable.  That's it!
 
 # Notes
-This compile takes a long time because the mxe cross-compiler has not released precompiled binaries since Jan 2021 (https://pkg.mxe.cc/repos/apt/dists/), so we have to build mxe & qt6 ourselves before building pgmodeler itself. Once mxe binaries are released, I'll look into updating the script, which should increase compile times immensely.
+This compile takes a long time because the mxe cross-compiler has not released precompiled binaries since Jan 2021 (https://pkg.mxe.cc/repos/apt/dists/), so we have to build mxe & qt6 ourselves before building pgmodeler itself. Once mxe binaries are released, I'll look into updating the script, which should decrease compile times immensely.
