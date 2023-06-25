@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  sandbox:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["/bin/bash", "/opt/src/script/build.sh", "v1.0.4"]
+    volumes:
+      - "/mnt/windows/pgmodeler:/opt/pgmodeler"

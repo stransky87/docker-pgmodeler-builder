@@ -9,16 +9,9 @@ This container currently produces binaries for Windows x86_64 only. This script 
 
 # Usage
 
-Simply run the `handcraftedbits/pgmodeler-builder` image, specifying an output volume, mapped to the container
-directory `/opt/pgmodeler` (where binaries will be saved) and the version to build (corresponding to a valid tag in the
-[pgModeler Git repository](https://github.com/pgmodeler/pgmodeler) repository).  For example, to build pgModeler
-version `1.0.1` and store the result in `/mnt/windows/pgmodeler`:
+Simply modify the contents of docker-compose.yml to suit your build needs (build version, output volume), and run it. It will take a minimum of 2.5 hrs to build, so go watch a movie or read a book...
 
-```bash
-docker run -v /mnt/windows/pgmodeler:/opt/pgmodeler handcraftedbits/pgmodeler-builder v1.0.1
-```
+Once it is done, copy the contents of the output directory to the destination folder of your choice and simply run the `pgmodeler.exe` executable.  That's it!
 
-If you run the command without specifying a version the container script will list all valid pgModeler versions.
-
-Simply run the `pgmodeler.exe` executable stored in your output directory.  That's it!
-
+# Notes
+This compile takes a long time because the mxe cross-compiler has not released precompiled binaries since Jan 2021 (https://pkg.mxe.cc/repos/apt/dists/), so we have to build mxe & qt6 ourselves before building pgmodeler itself. Once mxe binaries are released, I'll look into updating the script, which should increase compile times immensely.

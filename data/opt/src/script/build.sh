@@ -4,8 +4,8 @@ DIR_INSTALL=/opt/pgmodeler
 DIR_POSTGRESQL=/opt/postgresql
 DIR_SRC=/opt/src
 DIR_SRC_PGMODELER=${DIR_SRC}/pgmodeler
-PATH=/opt/mxe/usr/bin:${PATH}
 TOOLCHAIN=x86_64-w64-mingw32.shared
+PATH=/opt/mxe/usr/bin:/opt/mxe/usr/${TOOLCHAIN}/qt6/bin:${PATH}
 
 function build() {
      local dir_mxe=/opt/mxe
@@ -23,7 +23,7 @@ function build() {
 
      # Build pgModeler.
 
-     ${TOOLCHAIN}-qmake-qt6 -r PREFIX=${DIR_INSTALL} PGSQL_INC=${DIR_POSTGRESQL}/include \
+     qmake6 -r PREFIX=${DIR_INSTALL} PGSQL_INC=${DIR_POSTGRESQL}/include \
           PGSQL_LIB=${DIR_POSTGRESQL}/lib/libpq.dll XML_INC=${dir_mxe_toolchain}/include/libxml2 \
           XML_LIB=${dir_mxe_toolchain}/bin/libxml2-2.dll
      make
@@ -57,7 +57,7 @@ function build() {
 
      cp -R ${dir_plugins}/imageformats ${dir_plugins_install}
      cp ${dir_plugins}/platforms/qwindows.dll ${dir_plugins_install}/platforms
-     #cp -R ${dir_plugins}/printsupport ${dir_plugins_install}
+     cp -R ${dir_plugins}/tls ${dir_plugins_install}
 }
 
 function clone_source() {
