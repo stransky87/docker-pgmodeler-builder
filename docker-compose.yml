@@ -4,6 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: ["/bin/bash", "/opt/src/script/build.sh", "v1.0.4"]
+    command: ["/bin/bash", "/opt/src/script/build.sh", "v1.1.2"]
     volumes:
       - "/mnt/windows/pgmodeler:/opt/pgmodeler"

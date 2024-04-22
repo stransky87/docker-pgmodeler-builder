@@ -5,7 +5,7 @@ LABEL net.baotran.image.authors="contact@baotran.net"
 RUN apt-get update && \
   apt-get install -y autoconf automake autopoint bash bison bzip2 flex g++ g++-multilib gettext git gperf gtk-doc-tools intltool \
   libc6-dev-i386 libgdk-pixbuf2.0-dev libltdl-dev libgl-dev libssl-dev libtool-bin libxml-parser-perl lzip make openssl \
-  p7zip-full patch perl python3 python3-mako python-pkg-resources ruby sed unzip wget xz-utils && \
+  p7zip-full patch perl python3 python3-mako python3-packaging python-pkg-resources ruby sed unzip wget xz-utils && \
   cd /opt && \
   update-alternatives --install /usr/bin/python python /usr/bin/python2 1 && \
   update-alternatives --install /usr/bin/python python /usr/bin/python3 2 && \
@@ -16,7 +16,7 @@ RUN apt-get update && \
 
 FROM cc AS deps1
 RUN cd /opt/mxe && \
-  make MXE_TARGETS='x86_64-w64-mingw32.shared x86_64-w64-mingw32.static' zlib && \
+  make MXE_TARGETS='x86_64-w64-mingw32.shared x86_64-w64-mingw32.static' zlib icu4c && \
   make MXE_TARGETS='x86_64-w64-mingw32.shared' dbus openssl pcre2 fontconfig freetype harfbuzz jpeg zstd \
     sqlite mesa postgresql libxml2 && \
   mkdir -p /opt/src && \
@@ -30,7 +30,7 @@ RUN cd /opt/mxe && \
   rm -rf pkg .ccache
 
 FROM deps2 AS postgres
-ARG VERSION_POSTGRESQL=REL_15_3
+ARG VERSION_POSTGRESQL=REL_16_2
 
 RUN cd /opt/src && \
   git clone https://github.com/postgres/postgres.git && \
@@ -47,5 +47,3 @@ FROM postgres AS builder
 COPY data /
 
 WORKDIR /opt
-
-
