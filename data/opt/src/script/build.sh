@@ -23,9 +23,9 @@ function build() {
 
      # Build pgModeler.
 
-     qmake6 -r PREFIX=${DIR_INSTALL} PGSQL_INC=${DIR_POSTGRESQL}/include \
+     qmake6 -r CONFIG+=release PREFIX=${DIR_INSTALL} PGSQL_INC=${DIR_POSTGRESQL}/include \
           PGSQL_LIB=${DIR_POSTGRESQL}/lib/libpq.dll XML_INC=${dir_mxe_toolchain}/include/libxml2 \
-          XML_LIB=${dir_mxe_toolchain}/bin/libxml2-2.dll
+          XML_LIB=${dir_mxe_toolchain}/bin/libxml2-16.dll pgmodeler.pro
      make
      make install
      rm ${DIR_INSTALL}/*.a
@@ -44,7 +44,7 @@ function build() {
      cp ${dir_mxe_toolchain}/bin/libcrypto-3-x64.dll ${DIR_INSTALL}
      cp ${dir_mxe_toolchain}/bin/liblzma-5.dll ${DIR_INSTALL}
      cp ${dir_mxe_toolchain}/bin/libssl-3-x64.dll ${DIR_INSTALL}
-     cp ${dir_mxe_toolchain}/bin/libxml2-2.dll ${DIR_INSTALL}
+     cp ${dir_mxe_toolchain}/bin/libxml2-16.dll ${DIR_INSTALL}
      cp ${DIR_POSTGRESQL}/lib/libpq.dll ${DIR_INSTALL}
 
      # Add QT configuration.
@@ -64,6 +64,10 @@ function clone_source() {
      cd ${DIR_SRC}
 
      git clone https://github.com/pgmodeler/pgmodeler.git
+	 
+	 cd ~/pgmodeler
+	 
+	 git clone https://github.com/pgmodeler/plugins.git
 }
 
 function check_version() {

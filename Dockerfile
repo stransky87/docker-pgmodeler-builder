@@ -5,10 +5,9 @@ LABEL net.baotran.image.authors="contact@baotran.net"
 RUN apt-get update && \
   apt-get install -y autoconf automake autopoint bash bison bzip2 flex g++ g++-multilib gettext git gperf gtk-doc-tools intltool \
   libc6-dev-i386 libgdk-pixbuf2.0-dev libltdl-dev libgl-dev libssl-dev libtool-bin libxml-parser-perl lzip make openssl \
-  p7zip-full patch perl python3 python3-mako python3-packaging python-pkg-resources ruby sed unzip wget xz-utils && \
+  p7zip-full patch perl python3 python3-mako python3-packaging python3-setuptools ruby sed unzip wget xz-utils && \
   cd /opt && \
-  update-alternatives --install /usr/bin/python python /usr/bin/python2 1 && \
-  update-alternatives --install /usr/bin/python python /usr/bin/python3 2 && \
+  update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
   echo "LANG=C.UTF-8" > /etc/default/locale && \
   git clone https://github.com/mxe/mxe.git && \
   cd mxe && \
@@ -30,7 +29,7 @@ RUN cd /opt/mxe && \
   rm -rf pkg .ccache
 
 FROM deps2 AS postgres
-ARG VERSION_POSTGRESQL=REL_16_2
+ARG VERSION_POSTGRESQL=REL_17_5
 
 RUN cd /opt/src && \
   git clone https://github.com/postgres/postgres.git && \
