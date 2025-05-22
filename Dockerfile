@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 AS cc
+FROM ubuntu:24.04 AS cc
 LABEL com.handcraftedbits.image.authors="opensource@handcraftedbits.com"
 LABEL net.baotran.image.authors="contact@baotran.net"
 
