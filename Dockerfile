@@ -24,7 +24,7 @@ RUN cd /opt/mxe && \
 
 FROM deps1 AS deps2
 RUN cd /opt/mxe && \
-  make MXE_TARGETS='x86_64-w64-mingw32.shared' qt6-qtbase qt6-qtimageformats qt6-qtsvg && \
+  make MXE_TARGETS='x86_64-w64-mingw32.shared' qt6-qtbase qt6-qtimageformats qt6-qtsvg qt6-qttools && \
   ln -s /opt/mxe/usr/x86_64-w64-mingw32.shared/qt6/bin/qmake /opt/mxe/usr/bin/x86_64-w64-mingw32.shared-qmake-qt6 && \
   rm -rf pkg .ccache
 
