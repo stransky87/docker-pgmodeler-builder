@@ -64,10 +64,10 @@ function clone_source() {
      cd ${DIR_SRC}
 
      git clone https://github.com/pgmodeler/pgmodeler.git
-	 
-	 cd ~/pgmodeler
-	 
-	 git clone https://github.com/pgmodeler/plugins.git
+
+     cd ./pgmodeler
+
+     git clone https://github.com/pgmodeler/plugins.git
 }
 
 function check_version() {
