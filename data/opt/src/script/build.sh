@@ -23,9 +23,12 @@ function build() {
 
      # Build pgModeler.
 
-     qmake6 -r CONFIG+=release PREFIX=${DIR_INSTALL} PGSQL_INC=${DIR_POSTGRESQL}/include \
-          PGSQL_LIB=${DIR_POSTGRESQL}/lib/libpq.dll XML_INC=${dir_mxe_toolchain}/include/libxml2 \
-          XML_LIB=${dir_mxe_toolchain}/bin/libxml2-16.dll pgmodeler.pro
+     qmake6 -r PREFIX=${DIR_INSTALL} \
+          PGSQL_INC=${DIR_POSTGRESQL}/include \
+          PGSQL_LIB=${DIR_POSTGRESQL}/lib/libpq.dll \
+          XML_INC=${dir_mxe_toolchain}/include/libxml2 \
+          XML_LIB=${dir_mxe_toolchain}/bin/libxml2-16.dll
+
      make
      make install
      rm ${DIR_INSTALL}/*.a
@@ -65,7 +68,7 @@ function clone_source() {
 
      git clone https://github.com/pgmodeler/pgmodeler.git
 
-     cd ./pgmodeler
+     cd ${DIR_SRC}/pgmodeler
 
      git clone https://github.com/pgmodeler/plugins.git
 }
